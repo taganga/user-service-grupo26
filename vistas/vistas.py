@@ -55,7 +55,7 @@ class VistaUsuarios(Resource):
             arrayResult=temp.split("$")
             salt=arrayResult[1]
             pass_cifrado=arrayResult[2]
-            nuevo_usuario=Usuario(username=request.json['username'],email=request.json['email'],password=pass_cifrado,salt=temp,createdAt=datetime.now().isoformat(' ', 'seconds'))
+            nuevo_usuario=Usuario(username=request.json['username'],email=request.json['email'],password=pass_cifrado,salt=temp,createdAt=datetime.now())
             db.session.add(nuevo_usuario)        
             db.session.commit()           
 
@@ -117,7 +117,7 @@ class VistaUsuarioAutenticacion(Resource):
                     
                     fecha_expiracion_token=temp2["exp"]
                     user_query.token=token_de_acceso                
-                    user_query.expireAt= datetime.fromtimestamp(fecha_expiracion_token).isoformat(' ', 'seconds')
+                    user_query.expireAt= datetime.fromtimestamp(fecha_expiracion_token)
                     db.session.commit()                      
                     return response
                     

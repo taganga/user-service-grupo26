@@ -18,12 +18,14 @@ app = Flask(__name__)
 #db_user = os.environ['DB_USER']
 #db_password =os.environ['DB_PASSWORD']
 
-db_connection_string ='postgresql://postgres:admin123@localhost:5432/userdb'# f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+#db_connection_string ='postgresql://postgres:admin123@localhost:5432/userdb'# f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = db_connection_string
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///userdb.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = db_connection_string
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['JWT_SECRET_KEY'] = 'frase-secreta'
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 162000
 
 app_context = app.app_context()
 app_context.push()
